@@ -3,4 +3,5 @@
 *.sig
 *.asc
 secret*
-
+packer-plugins
+files/manjaro/sources/manjaro.tar.gz

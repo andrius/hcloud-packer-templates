@@ -1,0 +1,12 @@
+arch-install-scripts
+archlinux-keyring
+bash
+awk
+coreutils
+gzip
+manjaro-keyring
+pacman
+pacman-mirrors
+sed
+systemd
+
