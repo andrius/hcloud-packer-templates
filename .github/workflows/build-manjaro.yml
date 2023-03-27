@@ -38,8 +38,8 @@ jobs:
       - name: Build manjaro chroot sources
         run: |
           cd ./files/manjaro/sources
-          [ -f manjaro.tar.gz ] || docker run --privileged --tty --rm --volume $(pwd):/build -v /proc:/proc manjarolinux/base:latest bash -c 'cd /build && ./create-image.sh'
-          ls -laih manjaro.tar.gz
+          [ -f manjaro.tar.gz ] || \
+          docker run --privileged --tty --rm --volume $(pwd):/build -v /proc:/proc manjarolinux/base:latest bash -c 'cd /build && ./create-image.sh'
 
       - name: Build manjaro image for Hetzner cloud
         run: |

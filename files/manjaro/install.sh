@@ -32,75 +32,50 @@ pacman -Sy
 pacman-key --init
 pacman-key --populate archlinux manjaro
 pacstrap /mnt \
-  ansible \
   autossh \
   base \
   base-devel \
   btrfs-progs \
   cloud-guest-utils \
   cloud-init \
-  container-diff \
-  crystal \
+  diff-so-fancy \
   curl \
-  dive \
   docker \
-  doctl \
   eslint \
   expect \
   fd \
   fuse2 \
   fzf \
   git \
-  github-cli \
-  gitui \
   gmp \
-  go \
   gpgme \
   grub \
-  hcloud \
   htop \
   inetutils \
   iputils \
   jq \
-  kbfs \
-  keybase \
   keychain \
   linux61 \
   lua \
   manjaro-zsh-config \
   mc \
   mosh \
-  most \
   mtr \
   nano \
   neovim \
-  ngrep \
-  nodejs \
-  npm \
   openssh \
-  packer \
   python \
   python-pip \
   python-yaml \
   qrencode \
   ripgrep \
   rsync \
-  ruby \
-  scaleway-cli \
-  shards \
   shellcheck \
-  sshfs \
-  sshpass \
-  syncthing \
-  tailscale \
-  terraform \
   the_silver_searcher \
   tig \
-  tmate \
   tmux \
   traceroute \
   tree \
-  unison \
   wget \
   which \
   wireguard-tools \
@@ -199,5 +174,6 @@ EOF
 ln -sf /run/systemd/resolve/stub-resolv.conf /mnt/etc/resolv.conf
 
 # clean up
-rm /mnt/root/.bash_history
-rm -r /mnt/var/cache/*
+rm -rf /mnt/root/.bash_history \
+       /mnt/var/cache/* \
+       /mnt/var/log/pacman.log

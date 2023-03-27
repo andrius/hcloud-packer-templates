@@ -7,7 +7,9 @@ pacman -Sy --quiet --noprogressbar --noconfirm make arch-install-scripts manjaro
 TMPDIR="$(mktemp -d)"
 
 env -i pacstrap -C /usr/share/manjaro-tools/pacman-default.conf -c -G -M "${TMPDIR}" $(cat packages | xargs)
+set +e
 cp --recursive --preserve=timestamps --backup --suffix=.pacnew rootfs/* "${TMPDIR}"/
+set -e
 mount --bind ${TMPDIR} ${TMPDIR}
 
 arch-chroot "${TMPDIR}" locale-gen
