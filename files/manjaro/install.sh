@@ -32,56 +32,108 @@ pacman -Sy
 pacman-key --init
 pacman-key --populate archlinux manjaro
 pacstrap /mnt \
+  ansible \
+  ansible-language-server \
+  asciinema \
   autossh \
   base \
   base-devel \
+  bash-language-server \
+  bat \
   btrfs-progs \
   cloud-guest-utils \
   cloud-init \
-  diff-so-fancy \
+  container-diff \
+  crystal \
+  ctop \
   curl \
+  diff-so-fancy \
+  dive \
   docker \
+  doctl \
+  duf  \
+  editorconfig-checker \
+  entr \
   eslint \
   expect \
   fd \
+  flake8 \
   fuse2 \
   fzf \
   git \
+  git-delta \
+  github-cli \
+  gitui \
   gmp \
+  go \
+  gofumpt \
+  gopls \
   gpgme \
+  gping \
   grub \
+  hcloud \
   htop \
   inetutils \
   iputils \
   jq \
   keychain \
-  linux61 \
+  lazygit \
+  linux62 \
   lua \
+  lua-language-server \
   manjaro-zsh-config \
   mc \
   mosh \
+  most \
   mtr \
+  mypy \
   nano \
   neovim \
+  ngrep \
+  nodejs \
+  npm \
   openssh \
+  packer \
   python \
+  python-lsp-server \
   python-pip \
   python-yaml \
   qrencode \
   ripgrep \
   rsync \
+  ruby \
+  scaleway-cli \
+  selene \
+  shards \
   shellcheck \
+  shellharden \
+  shfmt \
+  sshfs \
+  sshpass \
+  stylua \
+  syncthing \
+  tailscale \
+  tailwindcss-language-server \
+  terraform \
   the_silver_searcher \
   tig \
+  tldr \
+  tmate \
   tmux \
   traceroute \
   tree \
+  typescript-language-server \
+  unison \
+  unzip \
+  vint \
   wget \
   which \
   wireguard-tools \
+  yaml-language-server \
   yamllint \
   yay \
   yq \
+  zellij \
   zoxide \
   zsh \
   zsh-autosuggestions \
