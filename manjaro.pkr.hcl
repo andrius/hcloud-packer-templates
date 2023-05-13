@@ -5,7 +5,8 @@ variable "extra-packages" {
 
 variable "hcloud-servertype" {
   type    = string
-  default = "cx11"
+  # default = "cx11"
+  default = "cx21"
 }
 
 variable "hcloud-token" {
@@ -49,7 +50,8 @@ source "hcloud" "manjaro" {
   #  most_recent = true
   #}
   rescue       = "linux64"
-  location     = "hel1"
+  # location     = "hel1"
+  location     = "fsn1"
   snapshot_name = "manjaro-${formatdate("YYYYMMDD-hhmmss", timestamp()) }"
   snapshot_labels = local.build-labels
   ssh_username  = "root"
