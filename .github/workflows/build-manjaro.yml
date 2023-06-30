@@ -45,6 +45,8 @@ jobs:
         run: |
           IDS=( "$(hcloud image list --type=snapshot --selector="os-flavor=manjaro" --output=noheader --output="columns=id")" )
 
+          packer init manjaro.pkr.hcl
+
           packer build manjaro.pkr.hcl
 
           # delete old image(s)

@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    hcloud = {
+      version = ">= 1.0.0"
+      source  = "github.com/hashicorp/hcloud"
+    }
+  }
+}
+
 variable "extra-packages" {
   type    = list(string)
   default = []
@@ -62,7 +71,7 @@ build {
   sources = [ "source.hcloud.manjaro" ]
 
   provisioner "shell-local" {
-    inline = ["cd ./files/manjaro/sources && [ -f manjaro.tar.gz ] || docker run --privileged --tty --rm --volume $(pwd):/build -v /proc:/proc manjarolinux/base:latest bash -c 'cd /build && ./create-image.sh'"]
+    inline = ["cd ./files/manjaro/sources && [ -f manjaro.tar.gz ] || docker run --platform linux/amd64 --privileged --tty --rm --volume $(pwd):/build -v /proc:/proc manjarolinux/base:latest bash -c 'cd /build && ./create-image.sh'"]
   }
 
   provisioner "file" {

@@ -36,6 +36,7 @@ pacstrap /mnt \
   ansible-language-server \
   asciinema \
   autossh \
+  aws-cli-v2 \
   base \
   base-devel \
   bash-language-server \
@@ -50,6 +51,7 @@ pacstrap /mnt \
   diff-so-fancy \
   dive \
   docker \
+  docker-compose \
   doctl \
   duf  \
   editorconfig-checker \
@@ -104,6 +106,7 @@ pacstrap /mnt \
   ruby \
   scaleway-cli \
   selene \
+  serverless \
   shards \
   shellcheck \
   shellharden \
@@ -182,11 +185,11 @@ systemctl enable \
   sshd \
   systemd-networkd \
   systemd-resolved
-cat > /etc/systemd/network/default.network <<EOF2
-[Match]
-Name=en*
-[Network]
-DHCP=yes
+  cat > /etc/systemd/network/default.network <<EOF2
+  [Match]
+  Name=en*
+  [Network]
+  DHCP=yes
 EOF2
 
 # grub
@@ -227,5 +230,5 @@ ln -sf /run/systemd/resolve/stub-resolv.conf /mnt/etc/resolv.conf
 
 # clean up
 rm -rf /mnt/root/.bash_history \
-       /mnt/var/cache/* \
-       /mnt/var/log/pacman.log
+  /mnt/var/cache/* \
+  /mnt/var/log/pacman.log
