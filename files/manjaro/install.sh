@@ -80,7 +80,7 @@ pacstrap /mnt \
   jq \
   keychain \
   lazygit \
-  linux62 \
+  linux64 \
   lua \
   lua-language-server \
   manjaro-zsh-config \
