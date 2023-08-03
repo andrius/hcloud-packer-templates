@@ -32,19 +32,16 @@ pacman -Sy
 pacman-key --init
 pacman-key --populate archlinux manjaro
 pacstrap /mnt \
-  base \
-  base-devel \
-  bat \
   btrfs-progs \
   cloud-guest-utils \
   cloud-init \
   curl \
   docker \
   docker-compose \
-  expect \
   fd \
   fuse2 \
   git \
+  gnu-netcat \
   gpgme \
   grub \
   htop \
@@ -56,19 +53,17 @@ pacstrap /mnt \
   lua \
   manjaro-zsh-config \
   mc \
+  micro \
   mosh \
-  most \
-  mtr \
-  nano \
   neovim \
   openssh \
   python \
   python-pip \
-  python-yaml \
   rsync \
   ruby \
+  syncthing \
+  tailscale \
   tig \
-  tmate \
   tmux \
   traceroute \
   tree \
@@ -77,6 +72,7 @@ pacstrap /mnt \
   which \
   wireguard-tools \
   yay \
+  zoxide \
   zsh \
   zsh-autosuggestions \
   zsh-completions \

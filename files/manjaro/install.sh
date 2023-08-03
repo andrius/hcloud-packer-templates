@@ -67,6 +67,7 @@ pacstrap /mnt \
   github-cli \
   gitui \
   gmp \
+  gnu-netcat \
   go \
   gofumpt \
   gopls \
@@ -85,11 +86,11 @@ pacstrap /mnt \
   lua-language-server \
   manjaro-zsh-config \
   mc \
+  micro \
   mosh \
   most \
   mtr \
   mypy \
-  nano \
   neovim \
   ngrep \
   nodejs \
