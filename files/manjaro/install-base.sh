@@ -49,7 +49,7 @@ pacstrap /mnt \
   iputils \
   jq \
   keychain \
-  linux64 \
+  linux \
   lua \
   manjaro-zsh-config \
   mc \
