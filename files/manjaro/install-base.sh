@@ -49,7 +49,7 @@ pacstrap /mnt \
   iputils \
   jq \
   keychain \
-  linux66 \
+  linux68 \
   lua \
   manjaro-zsh-config \
   mc \
@@ -165,5 +165,5 @@ ln -sf /run/systemd/resolve/stub-resolv.conf /mnt/etc/resolv.conf
 
 # clean up
 rm -rf /mnt/root/.bash_history \
-  /mnt/var/cache/* \
-  /mnt/var/log/pacman.log
+	/mnt/var/cache/* \
+	/mnt/var/log/pacman.log

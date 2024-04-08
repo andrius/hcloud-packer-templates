@@ -52,11 +52,7 @@ locals {
 
 source "hcloud" "manjaro" {
   server_type  = "${ var.hcloud-servertype }"
-  image = "debian-11"
-  #image_filter = {
-  #  with_selector = [ "os_flavor=debian" ]
-  #  most_recent = true
-  #}
+  image = "debian-12"
   rescue       = "linux64"
   # location     = "hel1"
   location     = "fsn1"

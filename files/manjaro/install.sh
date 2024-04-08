@@ -81,7 +81,7 @@ pacstrap /mnt \
   jq \
   keychain \
   lazygit \
-  linux66 \
+  linux68 \
   lua \
   lua-language-server \
   manjaro-zsh-config \
@@ -231,5 +231,5 @@ ln -sf /run/systemd/resolve/stub-resolv.conf /mnt/etc/resolv.conf
 
 # clean up
 rm -rf /mnt/root/.bash_history \
-  /mnt/var/cache/* \
-  /mnt/var/log/pacman.log
+	/mnt/var/cache/* \
+	/mnt/var/log/pacman.log
