@@ -1,0 +1,69 @@
+# vim: set filetype=yaml ts=2 sw=2 sts=2 et:
+#
+---
+name: "Build images for Hetzner cloud"
+
+env:
+  DEBUG: ${{ inputs.debug || true }}
+  VERBOSE: ${{ inputs.verbose || true }}
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches: [main, master]
+    paths:
+      - "*.pkr.hcl"
+      - "files/**"
+
+  schedule:
+    # At 03:00 on Sunday - https://crontab.guru/#0_3_*_*_0
+    - cron: "0 3 * * 0"
+
+defaults:
+  run:
+    shell: bash -euxo pipefail {0}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        packer-template: [manjaro-base, manjaro, ubuntu]
+    concurrency:
+        group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.packer-template }}
+        cancel-in-progress: true
+
+    env:
+      HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: 3bit/setup-hcloud@v2
+
+      - run: |
+          echo "${{ startsWith(matrix.packer-template, 'manjaro') }}"
+
+      - name: Build manjaro chroot sources
+        # If this is a manjaro (string starts with), sources will be needed
+        if: startsWith(matrix.packer-template, 'manjaro')
+        run: |
+          cd ./files/manjaro/sources
+          [ -f manjaro.tar.gz ] || \
+          docker run --privileged --tty --rm --volume $(pwd):/build -v /proc:/proc manjarolinux/base:latest bash -c 'cd /build && ./create-image.sh'
+
+      - name: "Build ${{ matrix.packer-template }} image for Hetzner cloud"
+        run: |
+          # Get ID's of the previous images - for cost saving purposes, old ones will be removed
+          IDS=( "$(hcloud image list --type=snapshot --selector="os-flavor=${{ matrix.packer-template }}" --output=noheader --output="columns=id")" )
+
+          # Build image
+          packer init ${{ matrix.packer-template }}.pkr.hcl
+          packer build ${{ matrix.packer-template }}.pkr.hcl
+
+          # Delete old images
+          for ID in ${IDS[@]}; do
+            hcloud image delete "$ID"
+          done

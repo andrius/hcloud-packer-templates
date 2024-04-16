@@ -53,8 +53,6 @@ locals {
 source "hcloud" "ubuntu" {
   server_type  = "${ var.hcloud-servertype }"
   image = "ubuntu-22.04"
-  rescue       = "linux64"
-  # location     = "hel1"
   location     = "fsn1"
   snapshot_name = "ubuntu-${formatdate("YYYYMMDD-hhmmss", timestamp()) }"
   snapshot_labels = local.build-labels
@@ -65,32 +63,15 @@ source "hcloud" "ubuntu" {
 build {
   sources = [ "source.hcloud.ubuntu" ]
 
-  provisioner "shell" {
-    script           = "files/filesystem.sh"
-    environment_vars = [ "LABEL=${local.build-id}" ]
-  }
-
   provisioner "file" {
-    destination = "/mnt/"
-    source      = "files/ubuntu/root/"
+    destination = "/tmp/install.sh"
+    source      = "files/ubuntu/install.sh"
   }
-
+ 
   provisioner "shell" {
     inline = [
-      # "gpg --batch --import /tmp/key-${local.build-id}.gpg",
-      "chmod --recursive u=rwX,g=rX,o=rX /mnt",
-      "chmod --recursive u=rwx,g=rx,o=rx /mnt/usr/local/bin/*",
-    ]
-  }
-
-  provisioner "shell" {
-    script           = "files/ubuntu/install.sh"
-    environment_vars = [
-      "UBUNTU_RELEASE=${local.release}",
-      "EXTRA_PACKAGES=${join(" ", var.extra-packages)}",
-      "KEYMAP=${var.system-keymap}",
-      "LOCALE=${var.system-locale}",
-      "TIMEZONE=${var.system-timezone}",
+      "chmod +x /tmp/install.sh",
+      "/tmp/install.sh"
     ]
   }
 
