@@ -32,19 +32,17 @@ jobs:
       matrix:
         packer-template: [manjaro-base, manjaro, ubuntu]
     concurrency:
-        group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.packer-template }}
-        cancel-in-progress: true
+      group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.packer-template }}
+      cancel-in-progress: true
 
     env:
       HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
 
     steps:
       - uses: actions/checkout@v4
 
       - uses: 3bit/setup-hcloud@v2
-
-      - run: |
-          echo "${{ startsWith(matrix.packer-template, 'manjaro') }}"
 
       - name: Build manjaro chroot sources
         # If this is a manjaro (string starts with), sources will be needed
