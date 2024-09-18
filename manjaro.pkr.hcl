@@ -14,7 +14,7 @@ variable "extra-packages" {
 
 variable "hcloud-servertype" {
   type    = string
-  default = "cx21"
+  default = "cx22"
 }
 
 variable "hcloud-token" {
