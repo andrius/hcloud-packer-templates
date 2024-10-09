@@ -27,10 +27,11 @@ mount --bind /mnt "$iso/mnt"
 set -euo pipefail
 
 # pacstrap
-pacman-mirrors -f 5
-pacman -Sy
 pacman-key --init
 pacman-key --populate archlinux manjaro
+pacman-key --refresh-keys
+pacman-mirrors -f 5
+pacman -Sy
 pacstrap /mnt \
   btrfs-progs \
   cloud-guest-utils \
@@ -49,7 +50,7 @@ pacstrap /mnt \
   iputils \
   jq \
   keychain \
-  linux68 \
+  linux66 \
   lua \
   manjaro-zsh-config \
   mc \
@@ -61,6 +62,7 @@ pacstrap /mnt \
   python-pip \
   rsync \
   ruby \
+  sed \
   syncthing \
   tailscale \
   tig \

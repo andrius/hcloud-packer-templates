@@ -27,16 +27,16 @@ mount --bind /mnt "$iso/mnt"
 set -euo pipefail
 
 # pacstrap
-pacman-mirrors -f 5
-pacman -Sy
 pacman-key --init
 pacman-key --populate archlinux manjaro
+pacman-key --refresh-keys
+pacman-mirrors -f 5
+pacman -Sy
 pacstrap /mnt \
   ansible \
   ansible-language-server \
   asciinema \
   autossh \
-  aws-cli-v2 \
   base \
   base-devel \
   bash-language-server \
@@ -81,7 +81,7 @@ pacstrap /mnt \
   jq \
   keychain \
   lazygit \
-  linux68 \
+  linux66 \
   lua \
   lua-language-server \
   manjaro-zsh-config \
@@ -106,8 +106,8 @@ pacstrap /mnt \
   rsync \
   ruby \
   scaleway-cli \
+  sed \
   selene \
-  serverless \
   shards \
   shellcheck \
   shellharden \
